@@ -41,6 +41,7 @@ export const userAPI = {
 // Appointment API
 export const appointmentAPI = {
   getAll: () => api.get('/appointments'),
+  getAllAdmin: () => api.get('/appointments/admin/all'),
   getOne: (id) => api.get(`/appointments/${id}`),
   create: (data) => api.post('/appointments', data),
   update: (id, data) => api.put(`/appointments/${id}`, data),

@@ -13,6 +13,25 @@ export const getAppointments = async (req, res) => {
   }
 };
 
+// @desc    Get all appointments for admin
+// @route   GET /api/appointments/admin/all
+// @access  Private/Admin
+export const getAllAppointmentsAdmin = async (req, res) => {
+  try {
+    // Only admins can access this
+    if (req.user.role !== 'admin') {
+      return res.status(401).json({ message: 'Not authorized. Admin access required.' });
+    }
+
+    const appointments = await Appointment.find()
+      .populate('userId', 'email profile')
+      .sort({ dateTime: -1 });
+    res.json(appointments);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // @desc    Get single appointment
 // @route   GET /api/appointments/:id
 // @access  Private

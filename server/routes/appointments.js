@@ -4,7 +4,8 @@ import {
   getAppointment,
   createAppointment,
   updateAppointment,
-  deleteAppointment
+  deleteAppointment,
+  getAllAppointmentsAdmin
 } from '../controllers/appointmentController.js';
 import { protect } from '../middleware/auth.js';
 
@@ -13,6 +14,9 @@ const router = express.Router();
 router.route('/')
   .get(protect, getAppointments)
   .post(protect, createAppointment);
+
+router.route('/admin/all')
+  .get(protect, getAllAppointmentsAdmin);
 
 router.route('/:id')
   .get(protect, getAppointment)
