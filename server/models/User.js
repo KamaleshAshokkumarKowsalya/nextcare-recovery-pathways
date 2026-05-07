@@ -16,8 +16,12 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['patient', 'admin', 'healthcare_provider'],
+    enum: ['patient', 'admin', 'doctor', 'healthcare_provider'],
     default: 'patient'
+  },
+  doctorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Doctor'
   },
   profile: {
     firstName: String,
